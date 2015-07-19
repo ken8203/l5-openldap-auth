@@ -13,7 +13,7 @@ Add to `composer.json` and install with `composer install` / `composer update`
 or use `composer require kcchung/l5-openldap-auth` directly.
 
 ##Add to Laravel
-Modify your `config/app.php` file and add the service provider to the providers array.
+Open your `config/app.php` file and add the service provider to the providers array.
 ```
 kcchung\L5OpenldapAuth\LdapAuthServiceProvider::class
 ```
@@ -41,8 +41,11 @@ return [
 ?>
 ```
 
+##Extending
+If you wish to custom any functions, just modify.
 
-
+##About
+Create by [Jay Chung](http://jaychung.tw)
 
 
 

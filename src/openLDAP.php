@@ -18,6 +18,7 @@ class openLDAP {
     private $LDAP_BASEDN;
     private $LDAP_GROUPDN;
     private $LDAP_VERSION;
+    private $LDAP_LOGINATTR;
     private $groupList;
     private static $ldapConnectId = null;
 
@@ -28,6 +29,7 @@ class openLDAP {
         $this->LDAP_VERSION = Config::get('ldap.version');
         $this->LDAP_BASEDN = Config::get('ldap.basedn');
         $this->LDAP_GROUPDN = Config::get('ldap.groupdn');
+        $this->LDAP_LOGINATTR = Config::get('ldap.login_attribute');
 
         if (is_null(self::$ldapConnectId))
             $this->connect();
@@ -62,7 +64,7 @@ class openLDAP {
             return false;
         }
 
-        $ldapRdn = "uid=" . $username . "," . $this->LDAP_BASEDN;
+        $ldapRdn = $this->LDAP_LOGINATTR . "=" . $username . "," . $this->LDAP_BASEDN;
         $isConnected = @ldap_bind(self::$ldapConnectId, $ldapRdn, $password);
 
         return $isConnected;
@@ -70,7 +72,7 @@ class openLDAP {
 
     public function getUserData($identifier, $attr='')
     {
-        $ldapFilter = "(&(uid=". $identifier . ")(sn=" . $identifier . "))";
+        $ldapFilter = "(&(" . $this->LDAP_LOGINATTR . "=". $identifier . ")(sn=" . $identifier . "))";
         if (!is_array($attr))
             $attr = array();
 
