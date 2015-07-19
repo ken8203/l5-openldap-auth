@@ -1,0 +1,19 @@
+{
+    "name": "kcchung/l5-openldap-auth",
+    "description": "An openldap auth driver for Laravel 5.",
+    "keywords": ["Laravel", "openLDAP", "Auth"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kcchung",
+            "email": "ken8203@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "kcchung\\L5OpenldapAuth\\": "src/"
+        }
+    },
+    "minimum-stability": "dev", 
+    "require": {}
+}
