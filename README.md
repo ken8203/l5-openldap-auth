@@ -33,8 +33,6 @@ return [
     
     'basedn'    => 'ou=People,dc=example,dc=com', // basedn for users
     'login_attribute' => 'uid', // login attributes for users
-
-    'groupdn'   => 'ou=Group,dc=example,dc=com', // basedn for groups, optional
 ];
 
 ?>

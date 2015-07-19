@@ -112,6 +112,11 @@ class openLDAP {
         $gidnumber = strval($this->getUserData($identifier)['gidnumber'][0]);
         return $this->groupList[$gidnumber];
     }
+
+    public function groupIsOK()
+    {
+        return false;
+    }
 }
 
 ?>

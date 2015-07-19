@@ -41,7 +41,9 @@ class LdapAuthUserProvider implements UserProviderInterface {
         $userInfo = $this->openLDAP->getUserData($identifier);        
         $credentials = array();
         $credentials['username'] = $identifier;
-        $credentials['group'] = $this->openLDAP->whichGroup($credentials['username']);
+
+        if ($this->openLDAP->groupIsOK())
+            $credentials['group'] = $this->openLDAP->whichGroup($credentials['username']);
 
         foreach($userInfo as $key => $value)
             $credentials[$key] = $value[0];
@@ -78,7 +80,8 @@ class LdapAuthUserProvider implements UserProviderInterface {
         if ($this->openLDAP->authenticate($credentials['username'], $credentials['password']))
         {
             $userInfo = $this->openLDAP->getUserData($credentials['username']);
-            $credentials['group'] = $this->openLDAP->whichGroup($credentials['username']);
+            if ($this->openLDAP->groupIsOK())
+                $credentials['group'] = $this->openLDAP->whichGroup($credentials['username']);
             foreach($userInfo as $key => $value)
                 $credentials[$key] = $value[0];
 
