@@ -42,10 +42,7 @@ return [
 ```
 
 ##Extending
-If you wish to custom any functions, just modify.
+If you wish to add your own functions, just modify any of the classes.
 
 ##About
-Create by [Kuan-Chien Chung(kcchung)](http://jaychung.tw)
-
-
-
+Created by [Kuan-Chien Chung(kcchung)](http://jaychung.tw)
