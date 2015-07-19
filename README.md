@@ -2,12 +2,20 @@
 An OpenLDAP authentication driver for Laravel 5.
 
 ##Installation
-Add the following to your composer.json with `composer install`
+Add to `composer.json` and install with `composer update` / `composer update`
 ```
 {
   require: {
-    "kcchung/L5OpenldapAuth": "dev-master"
+    "kcchung/l5-openldap-auth": "dev-master"
   }
 }
 ```
-and use `composer require kcchung/L5OpenldapAuth`
+or use `composer require kcchung/l5-openldap-auth` to install this package.
+
+##Add to Laravel
+Modify your `config/app.php` file and add the service provider to the providers array
+```
+kcchung\L5OpenldapAuth\LdapAuthServiceProvider::class,
+```
+
+
