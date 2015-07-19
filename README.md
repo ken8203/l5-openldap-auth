@@ -45,7 +45,7 @@ return [
 If you wish to custom any functions, just modify.
 
 ##About
-Create by [Jay Chung](http://jaychung.tw)
+Create by [Kuan-Chien Chung(kcchung)](http://jaychung.tw)
 
 
 
