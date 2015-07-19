@@ -23,9 +23,8 @@ Update your `config/auth.php` to use `ldap` driver.
 ```
 
 ##Configuration
-Manually add a `config/ldap.php` file and add the following
+Manually create a `config/ldap.php` file and add the following
 ```
-// config/ldap.php
 <?php
 
 return [
@@ -38,6 +37,8 @@ return [
 
     'groupdn'   => 'ou=Group,dc=example,dc=com', // basedn for groups, optional
 ];
+
+?>
 ```
 
 
