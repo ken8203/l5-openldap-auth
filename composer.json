@@ -9,6 +9,9 @@
             "email": "ken8203@gmail.com"
         }
     ],
+    "require": {
+        "laravel/framework": "5.1.*"
+    },
     "autoload": {
         "psr-4": {
             "kcchung\\L5OpenldapAuth\\": "src/"
