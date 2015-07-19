@@ -19,6 +19,5 @@
         "psr-4": {
             "kcchung\\L5OpenldapAuth\\": "src/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
