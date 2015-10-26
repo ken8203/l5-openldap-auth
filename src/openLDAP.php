@@ -72,7 +72,7 @@ class openLDAP {
 
     public function getUserData($identifier, $attr='')
     {
-        $ldapFilter = "(&(" . $this->LDAP_LOGINATTR . "=". $identifier . ")(sn=" . $identifier . "))";
+        $ldapFilter = "(&(" . $this->LDAP_LOGINATTR . "=". $identifier . "))";
         if (!is_array($attr))
             $attr = array();
 
@@ -101,7 +101,7 @@ class openLDAP {
         foreach ($info as $each)
         {
             if (!empty($each["cn"][0]))
-                $groupList[$each["gidnumber"][0]] = $each["cn"][0];
+                $groupList[] = $each["cn"][0];
         }
 
         return $groupList;
