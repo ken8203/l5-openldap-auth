@@ -101,7 +101,7 @@ class openLDAP {
         foreach ($info as $each)
         {
             if (!empty($each["cn"][0]))
-                $groupList[$each["gidnumber"][0]] = $each["cn"][0];
+                $groupList[] = $each["cn"][0];
         }
 
         return $groupList;
