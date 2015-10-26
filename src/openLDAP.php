@@ -72,7 +72,7 @@ class openLDAP {
 
     public function getUserData($identifier, $attr='')
     {
-        $ldapFilter = "(&(" . $this->LDAP_LOGINATTR . "=". $identifier . ")(sn=" . $identifier . "))";
+        $ldapFilter = "(&(" . $this->LDAP_LOGINATTR . "=". $identifier . "))";
         if (!is_array($attr))
             $attr = array();
 
