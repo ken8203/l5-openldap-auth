@@ -26,10 +26,9 @@ class LdapAuthUserProvider implements UserProviderInterface {
      * @param array $config
      * @return void
      */
-    public function __construct($model)
+    public function __construct()
     {
         $this->openLDAP = new openLDAP();
-        $this->model = $model;
     }
 
     /**
