@@ -29,7 +29,7 @@ class LdapAuthServiceProvider extends ServiceProvider
     public function boot()
     {
         Auth::extend('ldap', function($app) {
-            $provider = new LdapAuthUserProvider('App/User');
+            $provider = new LdapAuthUserProvider();
             return new Guard($provider, $app['session.store']);
         });
     }

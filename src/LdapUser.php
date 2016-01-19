@@ -53,7 +53,6 @@ class LdapUser implements Authenticatable
      */
     public function getRememberToken()
     {
-        return $this->attributes['remember_token'];
     }
     /**
      * Set the token value for the "remember me" session.
@@ -63,7 +62,6 @@ class LdapUser implements Authenticatable
      */
     public function setRememberToken($value)
     {
-        $this->attributes['remember_token'] = $value;
     }
     /**
      * Get the column name for the "remember me" token.
@@ -72,7 +70,6 @@ class LdapUser implements Authenticatable
      */
     public function getRememberTokenName()
     {
-        return 'remember_token';
     }
     /**
      * @param  string $key
