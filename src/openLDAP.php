@@ -107,15 +107,61 @@ class openLDAP {
         return $groupList;
     }
 
-    public function whichGroup($identifier)
-    {
-        $gidnumber = strval($this->getUserData($identifier)['gidnumber'][0]);
-        return $this->groupList[$gidnumber];
-    }
-
     public function groupIsOK()
     {
+        return true;
+    }
+
+    public function whichGroup($identifier)
+    {
+        $group = array("other");
+        if ($this->belongsToStudent($identifier))
+            array_push($group, "student");
+        if ($this->belongsToTA($identifier))
+            array_push($group, "security");
+        if ($this->belongsToFaculty($identifier))
+            array_push($group, "faculty");
+        if ($this->belongsToOffice($identifier))
+            array_push($group, "office");
+
+        return $group;
+    }
+
+    public function inGroup($identifier, $group)
+    {
+        $ldapFilter = "cn=" . $group;
+        $attr = array('memberuid');
+        $searchId = @ldap_search(self::$ldapConnectId, $this->LDAP_OU_GROUP_DN, $ldapFilter, $attr);
+
+        if (!$searchId)
+            return false;
+
+        $info = @ldap_get_entries(self::$ldapConnectId, $searchId);
+        if ($info[0]['count'] > 0)
+            if (is_numeric(array_search($identifier, $info[0]['memberuid'])))
+                return true;
+
         return false;
+    }
+
+    public function belongsToStudent($identifier)
+    {
+        return $this->inGroup($identifier, 'cs') || $this->inGroup($identifier, 'gcs') || $this->inGroup($identifier, 'dcs');
+    }
+
+    public function belongsToTA($identifier)
+    {
+        return $this->inGroup($identifier, 'security');
+    }
+
+    public function belongsToFaculty($identifier)
+    {
+        return $this->inGroup($identifier, 'faculty');
+    }
+
+    public function belongsToOffice($identifier)
+    {
+        return $this->inGroup($identifier, 'office');
     }
 }
 
