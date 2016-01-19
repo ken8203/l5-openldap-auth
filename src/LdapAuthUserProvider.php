@@ -19,15 +19,24 @@ class LdapAuthUserProvider implements UserProviderInterface {
      * @var openLDAP
      */
     protected $openLDAP;
+
+    /**
+     * The Eloquent user model.
+     *
+     * @var string
+     */
+    protected $model;
+
     /**
      * Creates a new LdapUserProvider and connect to Ldap
      *
      * @param array $config
      * @return void
      */
-    public function __construct()
+    public function __construct($model)
     {
         $this->openLDAP = new openLDAP();
+        $this->model = $model;
     }
 
     /**
@@ -60,6 +69,12 @@ class LdapAuthUserProvider implements UserProviderInterface {
     public function retrieveByToken($identifier, $token)
     {
         // TODO: Implement retrieveByToken() method.
+        $model = $this->createModel();
+
+        return $model->newQuery()
+            ->where($model->getKeyName(), $identifier)
+            ->where($model->getRememberTokenName(), $token)
+            ->first();
     }
     /**
      * @param Authenticatable $user
@@ -68,6 +83,9 @@ class LdapAuthUserProvider implements UserProviderInterface {
     public function updateRememberToken(Authenticatable $user, $token)
     {
         // TODO: Implement updateRememberToken() method.
+        $user->setRememberToken($token);
+
+        $user->save();
     }
     /**
      * Retrieve a user by the given credentials.
@@ -93,5 +111,40 @@ class LdapAuthUserProvider implements UserProviderInterface {
         $username = $credentials['username'];
         $password = $credentials['password'];
         return $this->openLDAP->authenticate($username, $password);
+    }
+
+    /**
+     * Create a new instance of the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function createModel()
+    {
+        $class = '\\'.ltrim($this->model, '\\');
+
+        return new $class;
+    }
+
+    /**
+     * Gets the name of the Eloquent user model.
+     *
+     * @return string
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Sets the name of the Eloquent user model.
+     *
+     * @param  string  $model
+     * @return $this
+     */
+    public function setModel($model)
+    {
+        $this->model = $model;
+
+        return $this;
     }
 }
