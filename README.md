@@ -1,7 +1,7 @@
 # Laravel 5 OpenLDAP Auth
 An OpenLDAP authentication driver for Laravel 5.
 
-##Installation
+## Installation
 Add to `composer.json` and install with `composer install` / `composer update`.
 ```
 {
@@ -11,7 +11,7 @@ Add to `composer.json` and install with `composer install` / `composer update`.
 }
 ```
 
-##Add to Laravel
+## Add to Laravel
 Open your `config/app.php` file and add the service provider to the providers array.
 ```
 kcchung\L5OpenldapAuth\LdapAuthServiceProvider::class
@@ -21,7 +21,7 @@ Update your `config/auth.php` to use `ldap` driver.
 'driver' => 'ldap'
 ```
 
-##Configuration
+## Configuration
 Manually create a `config/ldap.php` file and add the following:
 ```
 <?php
@@ -38,8 +38,8 @@ return [
 ?>
 ```
 
-##Extending
+## Extending
 If you wish to add your own functions, just modify any of the classes.
 
-##About
+## About
 Created by [Kuan-Chien Chung(kcchung)](http://jaychung.tw)
